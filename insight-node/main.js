@@ -24,7 +24,10 @@ register.registerMetric(monitor_api_request_total)
 
 app.get('*', async function (req, res, next) {
   const { pathname } = url.parse(req.url)
-  monitor_api_request_total.inc({ url: pathname });
+  if (pathname !== '/metrics') {
+    monitor_api_request_total.inc({ url: pathname });
+  }
+
   res.set('Content-Type', register.contentType);
   res.end(await register.metrics());
 })
