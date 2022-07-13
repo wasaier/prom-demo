@@ -1,0 +1,9 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    # 收集 filebeat 容器 /var/log/*.log
+    - /var/log/*.log
+
+output.elasticsearch:
+  hosts: ["elk_es:9200"]
