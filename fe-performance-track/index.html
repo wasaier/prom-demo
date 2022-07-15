@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    !function(){if('PerformanceLongTaskTiming' in window){var g=window.__tti={e:[]};
+    g.o=new PerformanceObserver(function(l){g.e=g.e.concat(l.getEntries())});
+    g.o.observe({entryTypes:['longtask']})}}();
+    </script> 
+  <script>
+    var start = Date.now()
+
+    {
+      document.addEventListener('readystatechange', function () {
+        if (document.readyState === 'interactive') {
+          console.log('document.interactive', Date.now() - start)
+        }
+      })
+    }
+
+    setTimeout(() => {
+      function test() {
+        console.log('test start', Date.now())
+        console.time('test')
+        let sum = 0
+        for (let i = 0; i < 500000000; i++) {
+          sum += Math.random();
+        }
+        console.timeEnd('test')
+        console.log(sum)
+      }
+      test()
+    }, 500)
+
+    window.onload = function () {
+      setTimeout(function () {
+        console.log('performance start', Date.now())
+        let t = performance.timing
+        console.log(t)
+        console.log('performance.domInteractive', t.domInteractive - t.navigationStart)
+      })
+    }
+  </script>
+</head>
+
+<body>
+  <button id="btn">onclick</button>
+</body>
+
+<script>
+  document.querySelector('#btn').addEventListener('click', function() {
+    console.error('click')
+  })
+</script>
+
+</html>

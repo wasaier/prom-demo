@@ -23,11 +23,13 @@
     "@ant-design/pro-layout": "^6.5.0",
     "react": "17.x",
     "react-dom": "17.x",
-    "umi": "^3.5.28"
+    "umi": "^3.5.28",
+    "web-vitals": "^2.1.4"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@types/tti-polyfill": "^0.2.1",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.5.28",
     "lint-staged": "^10.0.7",
